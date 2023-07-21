@@ -1,32 +1,9 @@
 pipeline {
     agent any
-    triggers {
-        pollSCM('') //Empty quotes tells it to build on a push
-    }
-
+    
     stages {
         
-        stage('Checkout SCM') {
-            
-            
-    
-            steps {
-                checkout([
-        $class: 'GitSCM', 
-        branches: [[name: '*/master']], 
-        doGenerateSubmoduleConfigurations: false, 
-        extensions: [[$class: 'CleanCheckout']], 
-        submoduleCfg: [], 
-        userRemoteConfigs: [[credentialsId: 'git_id', url: 'git@github.com:jigarshah088/devopsPractice.git']]
-    ])
-                
-                script{
-            checkout
-        }
-                
-                
-            }
-        }
+       
         
         stage('SonarQube analysis') {
             steps{
